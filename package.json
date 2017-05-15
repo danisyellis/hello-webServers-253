@@ -1,0 +1,12 @@
+{
+  "name": "hello-web-servers-253",
+  "version": "1.0.0",
+  "description": "Spotify music player clone",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
