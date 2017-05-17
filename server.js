@@ -5,13 +5,14 @@ var bodyParser = require("body-parser");
 var logger = require("morgan");
 var app = express();
 
-//data
+//data to use in ejs templates
 var artists = [{name:"Jonathan the Great"}, {name: "The Guild"}];
-//var artists = ["Jonathan the Great", "The Guild", "Coders", "The Beatles"];
 var albums = ["an album", "another one"];
 var songs = ["a song", "song 2"];
+//var artists = require("./public/artists.json")
 
 
+//middleware
 app.set('view engine', 'ejs')
 app.use(logger('dev'));
 
@@ -20,16 +21,14 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-// app.get("/", function(req, res) {
-//   res.sendFile(path.join(__dirname, "/views/index.html"));
-// })
 
+//routes
 app.get('/', function(req, res) {
     res.render('index.ejs', {
       artists: artists
     });
 });
-app.get('/album', function(req, res) {
+app.get('/album/:id', function(req, res) {
     res.render('album.ejs');
 });
 app.get('/albums', function(req, res) {
@@ -46,16 +45,22 @@ app.get('/songs', function(req, res) {
     });
 });
 
-//q's  -- where should this error catcher be? When do these errors occur? Does that change when I say err.status || 500?
-//q: err, req, res, next
+//error handling middleware
 app.use(function(err, req, res, next) {
-  console.log(err.stack);
-  res.status(err.status || 500).send("Something's wrong! Sorry about that." + err)
+  console.error(err.stack);
+  res.status(err.status || 500).send("Something's wrong! Sorry about that. " + err)
 })
 
 app.use(function(req, res) {
   res.status(404).send("404")
 });
 
+//start the server
 app.listen(8081);
 console.log("I'm listening! Port 8081");
+
+
+//note to self: this is how to route when not using view engine
+// app.get("/", function(req, res) {
+//   res.sendFile(path.join(__dirname, "/views/index.html"));
+// })
