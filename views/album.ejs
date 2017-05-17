@@ -1,2 +1,8 @@
-<%- include partials/head %>
-<%- include partials/navbar %>
+<% include partials/head %>
+<% include partials/navbar %>
+
+<h1><%= albums[id].name %></h1>
+
+<%albums[id].songs.forEach(function(song) { %>
+  <p><%= song %></p>
+<% }); %>

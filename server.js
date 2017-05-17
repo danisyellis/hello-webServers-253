@@ -6,8 +6,8 @@ var logger = require("morgan");
 var app = express();
 
 //data to use in ejs templates
-var artists = [{name:"Jonathan the Great"}, {name: "The Guild"}];
-var albums = ["an album", "another one"];
+var artists = [{name:"Jonathan the Great", songs: ["1", "2", "3"]}, {name: "The Guild", songs:[]}];
+var albums = [{name: "an album", songs:["my song", "yours", "lalala"]},{name: "another one", songs: ["sun", "moon", "earth", "sky"]} ];
 var songs = ["a song", "song 2"];
 //var artists = require("./public/artists.json")
 
@@ -29,15 +29,23 @@ app.get('/', function(req, res) {
     });
 });
 app.get('/album/:id', function(req, res) {
-    res.render('album.ejs');
+  console.log(req.params)
+
+    res.render('album.ejs', {
+      id:req.params.id,
+      albums: albums
+    })
 });
 app.get('/albums', function(req, res) {
     res.render('albums.ejs', {
       albums: albums
     });
 });
-app.get('/artist', function(req, res) {
-    res.render('artist.ejs');
+app.get('/artist/:id', function(req, res) {
+    res.render('artist.ejs', {
+      artists: artists,
+      id: req.params.id
+    });
 });
 app.get('/songs', function(req, res) {
     res.render('songs.ejs', {
@@ -48,7 +56,7 @@ app.get('/songs', function(req, res) {
 //error handling middleware
 app.use(function(err, req, res, next) {
   console.error(err.stack);
-  res.status(err.status || 500).send("Something's wrong! Sorry about that. " + err)
+  res.status(err.status || 500).send("Something went wrong! Sorry about that. ")
 })
 
 app.use(function(req, res) {
