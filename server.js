@@ -6,9 +6,9 @@ var logger = require("morgan");
 var app = express();
 
 //data to use in ejs templates
-var artists = [{name:"Jonathan the Great", songs: ["1", "2", "3"]}, {name: "The Guild", songs:[]}];
-var albums = [{name: "an album", songs:["my song", "yours", "lalala"]},{name: "another one", songs: ["sun", "moon", "earth", "sky"]} ];
-var songs = ["a song", "song 2"];
+var artists = require("./public/jsonData/artists.json");
+var albums = require("./public/jsonData/albums.json")
+var songs = require("./public/jsonData/songs.json")
 //var artists = require("./public/artists.json")
 
 
