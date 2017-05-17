@@ -3,15 +3,17 @@ var path = require("path");
 var ejs = require('ejs');
 var bodyParser = require("body-parser");
 var logger = require("morgan");
-
 var app = express();
+
+//data
+var artists = [{name:"Jonathan the Great"}, {name: "The Guild"}];
+//var artists = ["Jonathan the Great", "The Guild", "Coders", "The Beatles"];
+var albums = ["an album", "another one"];
+var songs = ["a song", "song 2"];
+
+
 app.set('view engine', 'ejs')
 app.use(logger('dev'));
-
-app.use(function(err, req, res, next) {
-  console.err(err.stack);
-  res.status(500).send("Something's wrong! Sorry about that.")
-})
 
 app.use(bodyParser.urlencoded({
   extended:true
@@ -23,8 +25,6 @@ app.use(bodyParser.json());
 // })
 
 app.get('/', function(req, res) {
-  //var artists = ["Jonathan the Great", "The Guild", "Coders", "The Beatles"];
-  var artists = [{name:"Jonathan the Great"}, {name: "The Guild"}];
     res.render('index.ejs', {
       artists: artists
     });
@@ -33,11 +33,25 @@ app.get('/album', function(req, res) {
     res.render('album.ejs');
 });
 app.get('/albums', function(req, res) {
-    res.render('albums.ejs');
+    res.render('albums.ejs', {
+      albums: albums
+    });
 });
 app.get('/artist', function(req, res) {
     res.render('artist.ejs');
 });
+app.get('/songs', function(req, res) {
+    res.render('songs.ejs', {
+      songs: songs
+    });
+});
+
+//q's  -- where should this error catcher be? When do these errors occur? Does that change when I say err.status || 500?
+//q: err, req, res, next
+app.use(function(err, req, res, next) {
+  console.log(err.stack);
+  res.status(err.status || 500).send("Something's wrong! Sorry about that." + err)
+})
 
 app.use(function(req, res) {
   res.status(404).send("404")

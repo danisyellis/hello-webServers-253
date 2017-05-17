@@ -2,3 +2,6 @@
 <%- include partials/navbar %>
 
 <h1>Albums!</h1>
+<% albums.forEach(function(album) { %>
+  <p><%= album %></p>
+<% }); %>
