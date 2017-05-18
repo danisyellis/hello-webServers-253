@@ -1,8 +1,13 @@
 <% include partials/head %>
 <% include partials/navbar %>
 
-<h1><%= albums[id].name %></h1>
+<%var albumId = albums[id];%>
+<h1><%= albumId.title %></h1>
+<h1><a href="/artists/<%=artistId%>"><%= artistName %></a>
+<h1><%= albumId.year%></h1>
 
-<%albums[id].songs.forEach(function(song) { %>
-  <p><%= song %></p>
-<% }); %>
+<% songs.forEach(function(song) { %>
+  <li><%=song.title%></li>
+    <%=song.track_no%>
+    <%=song.length%>
+<%})%>

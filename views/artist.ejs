@@ -1,4 +1,9 @@
 <% include partials/head %>
 <% include partials/navbar %>
 
-<h1><%=artist.name%></h1>
+<h1><%=artist.name%> Genre: <%=artist.genre%></h1>
+
+<% albums.forEach(function(album) {%>
+  <%var albumID = album.id;%>
+  <li><a href="/albums/<%=albumID%>"><%=album.title%></a>: <%=album.year%></li>
+<%})%>
