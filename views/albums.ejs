@@ -1,4 +1,52 @@
-<%- include partials/head %>
-<%- include partials/navbar %>
+<!--  START OF BODY  -->
+<div><% include partials/head %></div>
+<div class="fx nav-color fx-just"><% include partials/navbar %></div>
 
-<h1>Albums!</h1>
+<body>
+
+  <div id="sec-name-wrap" class="fx fx-just">
+
+    <div id="sec-name" class="col-fx"><h1>Albums</h1></div>
+
+  </div> <!-- PAGE TITLE -->
+
+
+  <div class= "container">
+
+    <div class="fx fx-grow" >
+      <div id="artist-box" class="col-fx cont-width mint-color">
+
+        <div id="art-info-wrap" class="row fx-just ">
+
+          <div id="img-col" class= "col-fx">
+            <a id="img-album" href="http://placehold.it"><img src="http://placehold.it/150x150"></a>
+          </div> <!-- IMAGE WRAPPER BOX -->
+
+          <div id="art-meta-box" class= "col-fx">
+
+            <div id="art-name-row" class="row">
+              <h2>Album-Name</h2>
+            </div>  <!-- ARTIST NAME ROW -->
+
+            <div id="art-info-meta" class="row fx-grow">
+              <div id="album-label" class="col-fx art-labels" >Artist:</div>
+              <div id="album-name" class="col-fx art-labels" ><a href="">Artist-Name</a></div>
+              <div id="genre-label" class="col-fx art-labels">#Songs</div>
+              <div id="genre-type" class="col-fx art-labels">Songs</div>
+            </div> <!-- ARTIST META DATA -->
+
+          </div> <!-- ARTIST META ROW  -->
+
+        </div>  <!-- INFO WRAPPER  -->
+
+      </div> <!-- ARTIST PAGE BOX -->
+
+    </div>
+
+  </div>
+
+
+
+</body>
+
+<div class= "container nav-color"><% include partials/footer %></div>
