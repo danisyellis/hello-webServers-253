@@ -50,3 +50,10 @@
 </body>
 
 <div class= "container nav-color"><% include partials/footer %></div>
+
+<%# Below this is not yet working correctly %>
+
+<% albums.forEach(function(album) { %>
+  <%#var albumArtist = artists[album.artist_id].name;%>
+  <p><a href="/albums/<%=album.id%>"><%= album.title %></a> : <a href="/artists/<%=album.artist_id%>">albumArtist</a></p>
+<% }); %>
