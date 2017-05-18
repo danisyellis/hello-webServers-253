@@ -3,5 +3,7 @@
 
 <h1>Albums!</h1>
 <% albums.forEach(function(album) { %>
-  <p><%= album %></p>
+  <%#console.log(artists[0][1].name);%>
+  <%#var albumArtist = artists[album.artist_id].name;%>
+  <p><a href="/album/<%=album.id%>"><%= album.title %></a> : <a href="/artist/<%=album.artist_id%>">albumArtist</a></p>
 <% }); %>

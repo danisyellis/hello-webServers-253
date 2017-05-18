@@ -1,9 +1,4 @@
 <% include partials/head %>
 <% include partials/navbar %>
 
-<h1><%=artists[id].name%></h1>
-<ul>
-  <% artists[id].songs.forEach(function(song) { %>
-    <li><%= song %></li>
-  <% }) %>
-</ul>
+<h1><%=artist.name%></h1>

@@ -9,8 +9,16 @@ var app = express();
 var artists = require("./public/jsonData/artists.json");
 var albums = require("./public/jsonData/albums.json")
 var songs = require("./public/jsonData/songs.json")
-//var artists = require("./public/artists.json")
-
+var albumsForArtist = function(artistId) {
+  var albumArr = [];
+  artistId = parseInt(artistId);
+  for(var i=0; i<albums.length; i++) {
+    if(artistId === albums[i].artist_id) {
+      albumArr.push(albums[i])
+    }
+  }
+  return albumArr;
+}
 
 //middleware
 app.set('view engine', 'ejs')
@@ -29,8 +37,6 @@ app.get('/', function(req, res) {
     });
 });
 app.get('/album/:id', function(req, res) {
-  console.log(req.params)
-
     res.render('album.ejs', {
       id:req.params.id,
       albums: albums
@@ -38,13 +44,15 @@ app.get('/album/:id', function(req, res) {
 });
 app.get('/albums', function(req, res) {
     res.render('albums.ejs', {
-      albums: albums
+      albums: albums,
+      artists: artists
     });
 });
 app.get('/artist/:id', function(req, res) {
+    var id = req.params.id;
+    var artistAlbums = albumsForArtist(id);
     res.render('artist.ejs', {
-      artists: artists,
-      id: req.params.id
+      artist: artists[id - 1]
     });
 });
 app.get('/songs', function(req, res) {

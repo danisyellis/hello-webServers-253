@@ -4,7 +4,8 @@
 <h1>Artists</h1>
 
 <%artists.forEach(function(artist) { %>
-  <p><%= artist.name %></p>
+  <%var id=artist.id;%>
+  <p><a href="/artist/<%=id%>"><%= artist.name %></a> genre <%= artist.genre %></p>
 <% }); %>
 
 
