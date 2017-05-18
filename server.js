@@ -49,6 +49,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 
+//loop through
+
 //routes
 app.get('/', function(req, res) {
     res.render('index.ejs', {
