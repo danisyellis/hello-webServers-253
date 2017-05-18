@@ -2,8 +2,10 @@
 <%- include partials/navbar %>
 
 <h1>Albums!</h1>
+
+<%# Below this is not yet working correctly %>
+
 <% albums.forEach(function(album) { %>
-  <%#console.log(artists[0][1].name);%>
   <%#var albumArtist = artists[album.artist_id].name;%>
   <p><a href="/albums/<%=album.id%>"><%= album.title %></a> : <a href="/artists/<%=album.artist_id%>">albumArtist</a></p>
 <% }); %>
