@@ -9,13 +9,6 @@ var app = express();
 var artists = require("./public/jsonData/artists.json");
 var albums = require("./public/jsonData/albums.json")
 var songs = require("./public/jsonData/songs.json")
-//functions to parse this data- linking data from the different files together
-
-// var getalbumsForAllArtists = function(artistsArray) {
-//   artists.forEach(artist, function() {
-//
-//   })
-// }
 
 var albumsForArtist = function(artistId) {
   var albumArr = [];
@@ -26,6 +19,17 @@ var albumsForArtist = function(artistId) {
     }
   }
   return albumArr;
+}
+
+var albumForSong = function(songId) {
+  var album = "";
+  albumId = songId.album_id
+  for (var i = 0; i < albums.length; i++) {
+    if (albumId === albums[i].id) {
+      album = albums[i];
+    }
+  }
+  return album;
 }
 var artistForAlbum = function(artistIdFromAlbum) {
   for(var i=0; i<artists.length; i++) {
@@ -46,6 +50,14 @@ var songsForAlbum = function(albumId) {
   return songsArr;
 }
 
+var artistForSong = function(artistIdFromSong) {
+  for(var i=0; i<artists.length; i++) {
+    if(artistIdFromSong === artists[i].id) {
+      return artists[i].name;
+    }
+  }
+}
+
 //middleware
 app.set('view engine', 'ejs')
 app.use(express.static(__dirname + "/public"));
@@ -61,8 +73,13 @@ app.use(bodyParser.json());
 
 //routes
 app.get('/', function(req, res) {
+  var numAlbumsforArtists = [];
+  for(var i=0; i<artists.length; i++) {
+    numAlbumsforArtists.push(albumsForArtist(artists[i].id).length)
+  }
     res.render('index.ejs', {
-      artists: artists
+      artists: artists,
+      numAlbumsforArtists: numAlbumsforArtists
     });
 });
 app.get('/albums/:id', function(req, res) {
@@ -82,10 +99,16 @@ app.get('/albums/:id', function(req, res) {
     })
 });
 app.get('/albums', function(req, res) {
-  //call artistsForAlbum(albums)
-  //after, get artist name and artist id
+  var artistsForAlbums = [];
+  var numSongsForAlbums = [];
+  for(var i=0; i<albums.length; i++) {
+    numSongsForAlbums.push(songsForAlbum(albums[i].id).length);
+    artistsForAlbums.push(artistForAlbum(albums[i].artist_id))
+  }
     res.render('albums.ejs', {
       albums: albums,
+      numSongsForAlbums: numSongsForAlbums,
+      artistsForAlbums: artistsForAlbums
     });
 });
 app.get('/artists/:id', function(req, res) {
@@ -93,7 +116,7 @@ app.get('/artists/:id', function(req, res) {
     var artistAlbums = albumsForArtist(id);
     var numSongsForAlbums = [];
     for(var i=0; i<artistAlbums.length; i++) {
-      numSongsForAlbums.push(songsForAlbum(artistAlbums[i].id).length)
+      numSongsForAlbums.push(songsForAlbum(artistAlbums[i].id))
     }
     res.render('artist.ejs', {
       artist: artists[id - 1],
@@ -102,8 +125,17 @@ app.get('/artists/:id', function(req, res) {
     });
 });
 app.get('/songs', function(req, res) {
+  for (var i = 0; i < songs.length; i++) {
+    var artistNames = [];
+    var albumName = [];
+    //get the correct artist id by looping through the albums to get it
+    artistNames.push(artistForSong(songs[i].artist_id))
+    albumName.push(albumForSong(songs[i].id))
+  }
     res.render('songs.ejs', {
-      songs: songs
+      songs: songs,
+      artistNames: artistNames,
+      albumName: albumName
     });
 });
 

@@ -9,10 +9,8 @@
 
 
     <div id="art-meta-sec" class="row fx-just">
-      <div id="num-albums-lbl" class="art-labels col-fx"><h5>Albums:</h5></div>
-      <div id="num-albums" class="art-labels col-fx"><h5>#of-Albums</h5></div>
-      <div id="genre-lbl" class="art-labels col-fx"><h5>Genre:</h5></div>
-      <div id="genre-type" class="art-labels col-fx"><h5><%=artist.genre%></h5></div>
+      <div id="num-albums" class="art-labels col-fx"><h5>Albums: <%=numSongsForAlbums.length%></h5></div>
+      <div id="genre-type" class="art-labels col-fx"><h5>Genre: <%=artist.genre%></h5></div>
     </div>
 
   </div> <!-- PAGE TITLE -->
@@ -37,7 +35,7 @@
 
             <div id="art-info-meta" class="row fx-grow">
               <div id="album-name" class="col-fx art-labels" >Year: <%=album.year%></div>
-              <div id="genre-label" class="col-fx art-labels"><%=numSongsForAlbums[i]%> Songs</div>
+              <div id="genre-label" class="col-fx art-labels"><%=numSongsForAlbums[i].length%> Songs</div>
             </div> <!-- ARTIST META DATA -->
 
               <%})%>

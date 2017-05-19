@@ -24,11 +24,11 @@
               <th>Length:</th>
             </tr> <!-- LABEL ROW  -->
 
-            <% songs.forEach(function(song){ %>
+            <% songs.forEach(function(song, i){ %>
               <tr>
                 <th><%= song.title%></th>
-                <th>Artist-Name</th>
-                <th>Album-Name</th>
+                <th><%=artistNames[i]%></th>
+                <th><%=albumName%></th>
                 <th><%=song.length%></th>
               </tr>
               <% }); %>
