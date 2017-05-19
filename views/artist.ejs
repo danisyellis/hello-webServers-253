@@ -1,10 +1,4 @@
 
-<h1><%=artist.name%> Genre: <%=artist.genre%></h1>
-
-<% albums.forEach(function(album) {%>
-  <%var albumID = album.id;%>
-  <li><a href="/albums/<%=albumID%>"><%=album.title%></a>: <%=album.year%></li>
-<%})%>
 
 
 
@@ -15,6 +9,12 @@
 <body>
 
   <div id="sec-name-wrap" class="col-fx container ">
+    <h1><%=artist.name%> Genre: <%=artist.genre%></h1>
+
+    <% albums.forEach(function(album) {%>
+      <%var albumID = album.id;%>
+      <li><a href="/albums/<%=albumID%>"><%=album.title%></a>: <%=album.year%></li>
+      <%})%>
 
     <div id="sec-name" class="row fx-just"><h1>Artist-Name</h1></div>
 

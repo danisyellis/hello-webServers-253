@@ -41,6 +41,7 @@ var songsForAlbum = function(albumId) {
 
 //middleware
 app.set('view engine', 'ejs')
+app.use(express.static(__dirname + "/public"));
 app.use(logger('dev'));
 
 app.use(bodyParser.urlencoded({

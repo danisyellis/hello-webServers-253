@@ -11,30 +11,41 @@
   </div> <!-- PAGE TITLE -->
 
 
-  <div class= "container">
+  <% albums.forEach(function(album) { %>
+    <%#var albumArtist = artists[album.artist_id].name;%>
+
+  <table class= "container">
+
 
     <div class="fx fx-grow" >
+
+
       <div id="artist-box" class="col-fx cont-width mint-color">
 
         <div id="art-info-wrap" class="row fx-just ">
+
 
           <div id="img-col" class= "col-fx">
             <a id="img-album" href="http://placehold.it"><img src="http://placehold.it/150x150"></a>
           </div> <!-- IMAGE WRAPPER BOX -->
 
+
+
           <div id="art-meta-box" class= "col-fx">
 
+
             <div id="art-name-row" class="row">
-              <h2>Album-Name</h2>
-            </div>  <!-- ARTIST NAME ROW -->
+              <h2><a href="/albums/<%=album.id%>"><%= album.title %></a></h2>
+            </div>  <!-- ALBUM NAME ROW -->
 
             <div id="art-info-meta" class="row fx-grow">
               <div id="album-label" class="col-fx art-labels" >Artist:</div>
-              <div id="album-name" class="col-fx art-labels" ><a href="">Artist-Name</a></div>
+              <div id="album-name" class="col-fx art-labels" ><a href="/artists/<%=album.artist_id%>"><%=album.artist%></a></div>
               <div id="genre-label" class="col-fx art-labels">#Songs</div>
               <div id="genre-type" class="col-fx art-labels">Songs</div>
             </div> <!-- ARTIST META DATA -->
 
+            <% }); %>
           </div> <!-- ARTIST META ROW  -->
 
         </div>  <!-- INFO WRAPPER  -->
@@ -43,7 +54,7 @@
 
     </div>
 
-  </div>
+  </table>
 
 
 
@@ -52,8 +63,3 @@
 <div class= "container nav-color"><% include partials/footer %></div>
 
 <%# Below this is not yet working correctly %>
-
-<% albums.forEach(function(album) { %>
-  <%#var albumArtist = artists[album.artist_id].name;%>
-  <p><a href="/albums/<%=album.id%>"><%= album.title %></a> : <a href="/artists/<%=album.artist_id%>">albumArtist</a></p>
-<% }); %>
