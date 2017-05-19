@@ -10,6 +10,13 @@ var artists = require("./public/jsonData/artists.json");
 var albums = require("./public/jsonData/albums.json")
 var songs = require("./public/jsonData/songs.json")
 //functions to parse this data- linking data from the different files together
+
+// var getalbumsForAllArtists = function(artistsArray) {
+//   artists.forEach(artist, function() {
+//
+//   })
+// }
+
 var albumsForArtist = function(artistId) {
   var albumArr = [];
   artistId = parseInt(artistId);
@@ -61,7 +68,8 @@ app.get('/', function(req, res) {
 app.get('/albums/:id', function(req, res) {
   //is the parseInt needed?/messing things up?
   var id=parseInt(req.params.id) -1;
-  var songs= songsForAlbum(id)
+  var songs= songsForAlbum(id+1)
+  var songLength = songs.length;
   var artistIdFromAlbum = albums[id].artist_id;
   var artistName = artistForAlbum(artistIdFromAlbum)
     res.render('album.ejs', {
@@ -69,7 +77,8 @@ app.get('/albums/:id', function(req, res) {
       albums: albums,
       songs: songs,
       artistName: artistName,
-      artistId: artistIdFromAlbum
+      artistId: artistIdFromAlbum,
+      songLength: songLength
     })
 });
 app.get('/albums', function(req, res) {
@@ -82,9 +91,14 @@ app.get('/albums', function(req, res) {
 app.get('/artists/:id', function(req, res) {
     var id = req.params.id;
     var artistAlbums = albumsForArtist(id);
+    var numSongsForAlbums = [];
+    for(var i=0; i<artistAlbums.length; i++) {
+      numSongsForAlbums.push(songsForAlbum(artistAlbums[i].id).length)
+    }
     res.render('artist.ejs', {
       artist: artists[id - 1],
-      albums: artistAlbums
+      albums: artistAlbums,
+      numSongsForAlbums: numSongsForAlbums
     });
 });
 app.get('/songs', function(req, res) {
