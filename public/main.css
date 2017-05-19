@@ -65,22 +65,31 @@ nav {
 }
 footer {
   display: flex;
-  height: 5em; 
+  height: 5em;
 }
 table {
     border-collapse: collapse;
     width: 95%;
+    margin: 0px 1000px 0px 100px;
 }
 
-td, th {
+th {
     border: 1px solid #dddddd;
     text-align: left;
-    padding: 8px;
+    padding: 100px;
+    height: 3em;
+}
+.tbl-size {
+  padding: 5px 5px 5px 5px;
 }
 
 tr:nth-child(even) {
-    background-color: #dddddd;
-
+    background-color: PowderBlue;
+}
+.in-pad {
+  padding-left: 20px;
+  font-style: normal;
+}
 
 
 

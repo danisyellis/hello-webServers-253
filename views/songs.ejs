@@ -1,14 +1,3 @@
-
-
-<h1>Songs!</h1>
-<% songs.forEach(function(song) { %>
-  <p><%= song.title %></p>
-<% }); %>
-
-
-
-
-
 <!--  START OF BODY  -->
 <div><% include partials/head %></div>
 <div class="fx nav-color fx-just"><% include partials/navbar %></div>
@@ -22,38 +11,36 @@
   </div> <!-- PAGE TITLE -->
 
 
-  <div class= "container">
+  <table class= "row">
 
       <div class="fx fx-grow" >
-        <div id="artist-box" class="col-fx cont-width mint-color">
+        <div id="artist-box" class="col-fx mint-color fx-just">
 
-          <div id="art-info-wrap" class="row fx-just ">
-            <table>
+          <table class="fx-just">
+            <tr>
+              <th>Song:</th>
+              <th>Artist:</th>
+              <th>Album:</th>
+              <th>Length:</th>
+            </tr> <!-- LABEL ROW  -->
 
+            <% songs.forEach(function(song){ %>
               <tr>
-                <th>Song:</th>
-                <th>Artist:</th>
-                <th>Album:</th>
-                <th>Length:</th>
-              </tr> <!-- LABEL ROW  -->
-              <tr>
-                <th>Song-Title</th>
+                <th><%= song.title%></th>
                 <th>Artist-Name</th>
                 <th>Album-Name</th>
                 <th>Length-of-Song</th>
               </tr>
+              <% }); %>
 
             </table>
-
-          </div> <!-- ARTIST META ROW  -->
 
         </div>  <!-- INFO WRAPPER  -->
 
       </div> <!-- ARTIST PAGE BOX -->
 
-    </div>
 
-  </div>
+  </table>
 
 
 
