@@ -10,26 +10,18 @@
 
 <body>
 
-<!--
-<%var albumId = albums[id];%>
-<h1><%= albumId.title %></h1>
-<h1><a href="/artists/<%=artistId%>"><%= artistName %></a>
-  <h1><%= albumId.year%></h1>
 
-  <% songs.forEach(function(song) { %>
-    <li><%=song.title%></li>
-    <%=song.track_no%>
-    <%=song.length%>
-    <%})%>
--->
+<%var albumId = albums[id];%>
+
+
+
   <div id="sec-name-wrap" class="fx fx-just">
 
-    <div id="sec-name" class="col-fx"><h1>Album</h1></div>
 
   </div> <!-- PAGE TITLE -->
 
 
-  <div class= "container">
+  <table >
 
     <div class="fx fx-grow" >
       <div id="artist-box" class="col-fx cont-width mint-color">
@@ -42,15 +34,16 @@
           <div id="art-meta-box" class= "col-fx">
 
             <div id="art-name-row" class="row">
-              <h2>Album-Name</h2>
+              <h2><%= albumId.title %></h2>
             </div>  <!-- ARTIST NAME ROW -->
 
             <div id="art-info-meta" class="row fx-grow">
               <div id="album-label" class="col-fx art-labels" >
-                <a href="">Artist-Name</a>
+                <a href="/artists/<%=artistId%>"><%= artistName %></a>
               </div>
-              <div id="album-name" class="col-fx art-labels" >Year-Released</div>
-              <div id="genre-label" class="col-fx art-labels">#ofSongs</div>
+              <div id="album-name" class="col-fx art-labels" ><%= albumId.year%></div>
+
+              <div id="genre-label" class="col-fx art-labels"><%=songLength%></div>
               <div id="genre-type" class="col-fx art-labels">Songs</div>
             </div> <!-- ARTIST META DATA -->
 
@@ -62,24 +55,22 @@
 
         </table>
 
-          <div class="row fx-just">
+          <div class="row">
 
             <table>
               <tr>
                 <th>Song:</th>
-                <th>Artist:</th>
-                <th>Album:</th>
-                <th>Length:</th>
+                <th>Track Number:</th>
+                <th>Song Length:</th>
               </tr> <!-- LABEL ROW  -->
+              <% songs.forEach(function(song){ %>
 
-              <!--      <% songs.forEach(function(song){ %>
               <tr>
               <th><%= song.title%></th>
-              <th>Artist-Name</th>
-              <th>Album-Name</th>
-              <th>Length-of-Song</th>
+              <th><%=song.track_no%></th>
+              <th><%=song.length%></th>
             </tr>
-            <% }); %> -->
+            <% }); %>
           </table>
 
         </div>
@@ -92,7 +83,7 @@
 
     </div>
 
-  </div>
+  </table>
 
 
 

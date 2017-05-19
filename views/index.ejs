@@ -11,7 +11,7 @@
   </div> <!-- PAGE TITLE -->
 
 
-  <%artists.forEach(function(artist) { %>
+  <%artists.forEach(function(artist, i) { %>
     <%var id=artist.id;%>
 
   <table class= "container">
@@ -38,10 +38,8 @@
             </div>  <!-- ARTIST NAME ROW -->
 
             <div id="art-info-meta" class="row fx-grow">
-              <div id="album-label" class="col-fx art-labels" >Albums:</div>
-              <div id="album-name" class="col-fx art-labels" >Album-Name</div>
-              <div id="genre-label" class="col-fx art-labels">Genre:</div>
-              <div id="genre-type" class="col-fx art-labels"><%= artist.genre %></div>
+              <div id="album-name" class="col-fx art-labels" >Albums: <%=numAlbumsforArtists[i]%></div>
+              <div id="genre-type" class="col-fx art-labels">Genre: <%= artist.genre %></div>
             </div> <!-- ARTIST META DATA -->
 
             <% }); %>
